@@ -1,4 +1,5 @@
 # test things locally
+```bash
 python3 -m virtualenv venv
 source venv/bin/activate
 pip install flask
@@ -7,12 +8,13 @@ pip freeze > requirements.txt
 docker build -t http .
 docker tag http louiskimlevu/http 
 docker push louiskimlevu/http
+```
 
 # deploy eks
+```bash
 export cluster=eksdemo
 export region=us-east-1
 export account_id=$(aws sts get-caller-identity | jq -r .Account)
-
 
 eksctl create cluster 
 --name $cluster \
@@ -26,7 +28,10 @@ eksctl create cluster
 --write-kubeconfig \
 
 vpc_id=$(eksctl get  cluster --region $region $cluster | awk '{print $5}' | grep vpc-)
+```
+# deploy aws-lb-bcontroller
 
+```bash
 eksctl create iamserviceaccount \
   --cluster=$cluster \
   --region $region \
@@ -47,7 +52,10 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
 kaf k8s_http.yaml
 http_service_dns=$(kgs | grep http | awk '{print $4}')
 curl $http_service_dns
+```
 
+# deploy istio
+```bash
 eksctl create fargateprofile --namespace istio-system --cluster $cluster --region $region
 istioctl install
 
@@ -59,9 +67,10 @@ kubectl annotate service istio-ingressgateway -n istio-system \
 kaf k8s_http_istio.yaml
 isitio_ingress_dns=$(kgs -n istio-system | grep ingress | awk '{print $4}')
 curl -H "Host: test.com" k8s-istiosys-istioing-66a0f46290-e650b8ad96bfe006.elb.us-east-1.amazonaws.com
-
+```
 
 # cleanup
+```bash
 k delete -f k8s_http_istio.yaml
 istioctl uninstall --purge
 istio_fp_id=$(eksctl get fargateprofile --cluster $cluster --region us-east-1 | grep istio | awk '{print $1}')
@@ -70,3 +79,4 @@ k delete -f k8s_http.yaml
 helm uninstall -n kube-system aws-load-balancer-controller
 eksctl delete iamserviceaccount --cluster=$cluster --region=$region --name aws-load-balancer-controller
 eksctl delete cluster --region=$region $cluster
+```
