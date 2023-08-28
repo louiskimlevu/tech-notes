@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      h1,
+      h2 {
+        margin: 0;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="https://www.youtube.com/watch?v=y17RuWkWdn8&t=7s"
+      >Learn DOM Manipulation In 18 Minutes
+    </a>
+    <h2>body object</h2>
+    <button class="body">console.log(body)</button>
+
+    <br />
+
+    <h2 class="this_h2_to_move">
+      Adding, Moving Elements with append, appendChild
+    </h2>
+    <button class="append">
+      const h2 = document.querySelector("h2.this_h2_to_move"); <br />
+      const div = document.querySelector("div.div_append_h2"); <br />
+      div.append("Hello World!", h2.innerText);
+    </button>
+    <div class="div_append_h2">append here</div>
+
+    <br />
+
+    <li class="to-move">li</li>
+    <button class="append_child">
+      const toMove = document.querySelector(".to-move")<br />
+      const moveHere = document.querySelector(".move-here")<br />
+      moveHere.appendChild(toMove);
+    </button>
+    <ul style="margin: 0" class="move-here">
+      ul
+    </ul>
+
+    <br />
+
+    <h2>Creating Elements with createElement + appendChild</h2>
+    <button class="create_element">
+      const newDiv = document.createElement("div");<br />
+      newDiv.innerText = "Created via InnerText";<br />
+      body.appendChild(newDiv);<br />
+      const salut = document.createTextNode("Created via createTextNode");<br />
+      body.appendChild(salut);
+    </button>
+    <div class="add_sthg_here_div"></div>
+
+    <br />
+
+    <h2>Difference innerText and textContent</h2>
+    <button class="innertext_vs_textcontent__btn">
+      const div =
+      document.querySelector("div.innertext_vs_textcontent__div");<br />
+      console.log(div.innerText);<br />
+      console.log(div.textContent);
+    </button>
+
+    <br />
+
+    <div class="innertext_vs_textcontent__div">
+      <span style="background-color: blue">visible span 1</span>
+      <span style="background-color: red">visible span 2</span>
+      <span style="display: none">invisible span 3</span>
+    </div>
+
+    <br />
+
+    <h2>Create an element and add to a parent as child html element</h2>
+    <button class="innerhtml__button">
+      const div = document.querySelector("div.innerhtml__div"); <br />
+
+      // Method1: createElement + innerText +appendChild <br />
+      // newH1= document.createElement("h1"); <br />
+      // newH1.innerText = "New content with innerHTML";<br />
+      // div.appendChild(newH1);<br />
+
+      // Method2: innerHTML<br />
+      div.innerHTML = "&lth1>New content added with innerHTML&lth1>";
+    </button>
+    <div class="innerhtml__div">
+      Replace this div innerText with correct innerHTML
+    </div>
+
+    <br />
+
+    <h2>Delete an element with remove, removeChild</h2>
+    <button class="delete_element">
+      const div = document.querySelector("#delete_element"); <br />
+      div.remove();
+    </button>
+    <div id="delete_element">Remove this div</div>
+
+    <br />
+
+    <button class="delete_child">
+      const div = document.querySelector("#delete_child_div"); <br />
+      const h2 = document.querySelector("#delete_child_h2");<br />
+      div.removeChild(h2);
+    </button>
+    <div id="delete_child_div">
+      <h2 id="delete_child_h2">Remove this h2</h2>
+    </div>
+
+    <br />
+
+    <h2>Changing an element attribute (id, class etc) with</h2>
+    <button class="change_attr">
+      const span = document.querySelector("#change_my_style");<br />
+      console.log(span.getAttribute("style"));<br />
+      console.log(span.style.color);<br />
+      span.setAttribute("style","color: green");
+    </button>
+    <br />
+    <span id="change_my_style" style="color: purple"
+      >change this span style attribute</span
+    >
+
+    <br />
+
+    <h2>pass and set data attributes</h2>
+    <button class="change_data_attr">
+      const span = document.querySelector("#data_attr_span"); <br />
+      console.log(span.dataset);<br />
+      span.innerText = span.dataset.firstName<br />
+      span.dataset.myNewAttribute = "from js to css"<br />
+    </button>
+    <br />
+    <span
+      id="data_attr_span"
+      data-first-name="Kyle"
+      data-last-name="Cook"
+      data-active
+      >this span has data attributes</span
+    >
+
+    <br />
+
+    <h2>classlist</h2>
+    <button class="btn_class_list">
+      const div = document.querySelector("#class_list");<br />
+      const classList = div.classList<br />
+      console.log(classList);<br />
+      classList.add("superclass")<br />
+      classList.remove("hi1")<br />
+      classList.toggle("hi3")<br />
+      console.log(classList);
+    </button>
+    <div id="class_list" class="hi1 hi2">class is hi1 hi2</div>
+
+    <h2>change css</h2>
+    <button class="change css">
+      const button = document.querySelector("button.change.css"); <br>
+      button.style.color = "red";
+    </button>
+
+    <script src="app.js"></script>
+  </body>
+</html>

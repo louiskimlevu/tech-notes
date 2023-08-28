@@ -1,0 +1,16 @@
+- Udemy
+  - Python Django - The Practical Guide
+    - https://www.udemy.com/course/python-django-the-practical-guide/
+- Youtube
+  - @veryacademy
+    - Python Django Project - Ecommerce Store (2021) 
+      - https://www.youtube.com/playlist?list=PLOLrQ9Pn6caxY4Q1U9RjO1bulQp5NDYS_
+    - Building a Simple Blog Series Support
+      - https://www.youtube.com/playlist?list=PLOLrQ9Pn6cawWd-5UZM6CIm0uqFXeBcTd
+  - @CodeWithStein
+    - Build a Full-Stack Social Network with Django and Vue 3:
+      - https://www.youtube.com/watch?v=xOxN_7coIDw&list=PLpyspNLjzwBlobEvnZzyWP8I-ORQcq4IO&pp=iAQB
+    - Building a SaaS using Django and Vue.js
+      - https://www.youtube.com/watch?v=fAdJKzhXZ6w&list=PLpyspNLjzwBnGesxJOt_0r4xTWR80j7Y3&pp=iAQB
+    - Ecommerce website using Django 3 and Vue.js 
+      - https://www.youtube.com/watch?v=bAG_Ia8LX-M&list=PLpyspNLjzwBmIDrDOaPkLLuy5YDDNW9SA&pp=iAQB
