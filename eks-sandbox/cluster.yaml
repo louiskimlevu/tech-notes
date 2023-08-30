@@ -1,0 +1,58 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: lk
+  region: ap-southeast-1
+  version: "1.25"
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: aws-load-balancer-controller
+      namespace: kube-system
+    wellKnownPolicies:
+      awsLoadBalancerController: true
+
+vpc:
+  cidr: 10.0.0.0/16
+  nat:
+    gateway: Single
+  clusterEndpoints:
+    publicAccess: true
+    privateAccess: true
+
+addons:
+- name: vpc-cni
+  attachPolicyARNs:
+    - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+- name: coredns
+- name: kube-proxy
+- name: aws-ebs-csi-driver
+  wellKnownPolicies:
+    ebsCSIController: true
+
+nodeGroups:
+  - name: ng-1-prifate
+    amiFamily: AmazonLinux2
+    instanceType: t3.large
+    minSize: 1
+    desiredCapacity: 1
+    maxSize: 3
+    privateNetworking: true
+
+
+# nodeGroups:
+#   - name: ng-1
+#     instanceType: m5.large
+#     desiredCapacity: 10
+#     volumeSize: 80
+#     ssh:
+#       allow: true # will use ~/.ssh/id_rsa.pub as the default ssh key
+#   - name: ng-2
+#     instanceType: m5.xlarge
+#     desiredCapacity: 2
+#     volumeSize: 100
+#     ssh:
+#       publicKeyPath: ~/.ssh/ec2_id_rsa.pub

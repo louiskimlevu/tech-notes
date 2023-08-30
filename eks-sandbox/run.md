@@ -12,21 +12,7 @@ docker push louiskimlevu/http
 
 # deploy eks
 ```bash
-export cluster=eksdemo
-export region=us-east-1
-export account_id=$(aws sts get-caller-identity | jq -r .Account)
-
-eksctl create cluster 
---name $cluster \
---region $region \
---with-oidc \
---version 1.27
---fargate \
---vpc-cidr 10.0.0.0/16 \
---vpc-nat-mode Single
---auto-kubeconfig \
---write-kubeconfig \
-
+eksctl create cluster -f cluster.yaml
 vpc_id=$(eksctl get  cluster --region $region $cluster | awk '{print $5}' | grep vpc-)
 ```
 # deploy aws-lb-bcontroller
@@ -39,7 +25,7 @@ eksctl create iamserviceaccount \
   --name=aws-load-balancer-controller \
   --role-name AmazonEKSLoadBalancerControllerRole_$cluster \
   --attach-policy-arn=arn:aws:iam::$account_id:policy/AWSLoadBalancerControllerIAMPolicy \
-  --approve \
+  --approve
 
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
   -n kube-system \
