@@ -34,7 +34,7 @@ addons:
     ebsCSIController: true
 
 nodeGroups:
-  - name: ng-1-prifate
+  - name: ng-1-private
     amiFamily: AmazonLinux2
     instanceType: t3.large
     minSize: 1
