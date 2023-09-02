@@ -18,6 +18,8 @@ vpc_id=$(eksctl get  cluster --region $region $cluster | awk '{print $5}' | grep
 # deploy aws-lb-bcontroller
 
 ```bash
+export region=ap-southeast-1
+export cluster=lk
 eksctl create iamserviceaccount \
   --cluster=$cluster \
   --region $region \
